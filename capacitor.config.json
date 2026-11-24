@@ -1,0 +1,8 @@
+{
+  "appId": "br.com.vitrinedojota.studio",
+  "appName": "Vitrine do Jota",
+  "webDir": ".",
+  "server": {
+    "androidScheme": "https"
+  }
+}

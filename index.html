@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#080b12">
+  <meta name="description" content="Central de conteúdo da Vitrine do Jota">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <title>Vitrine do Jota Studio</title>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">VJ</div>
+        <div><strong>VITRINE DO JOTA</strong><small>STUDIO DE CONTEÚDO</small></div>
+      </div>
+      <nav>
+        <button class="nav-link active" data-page="dashboard">▦ <span>Painel geral</span></button>
+        <button class="nav-link" data-page="content">✚ <span>Criar conteúdo</span></button>
+        <button class="nav-link" data-page="approval">◉ <span>Aprovações</span><b id="pendingBadge">0</b></button>
+        <button class="nav-link" data-page="calendar">▦ <span>Calendário</span></button>
+        <button class="nav-link" data-page="history">◷ <span>Histórico</span></button>
+        <button class="nav-link" data-page="settings">⚙ <span>Configurações</span></button>
+      </nav>
+      <div class="sidebar-note"><span class="live-dot"></span> Modo local ativo <small>Publicação automática ainda não conectada</small></div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <button class="mobile-menu" id="mobileMenu" aria-label="Abrir menu">☰</button>
+        <div><small class="eyebrow">CENTRAL DE OPERAÇÕES</small><h1 id="pageTitle">Painel geral</h1></div>
+        <div class="top-actions"><span class="local-pill">● SALVO NESTE DISPOSITIVO</span><button class="primary-btn" data-goto="content">＋ Novo conteúdo</button></div>
+      </header>
+
+      <section class="page active" id="page-dashboard">
+        <div class="welcome-card">
+          <div><span class="eyebrow blue">VITRINE DO JOTA • CONTEÚDO</span><h2>Seu conteúdo.<br><em>Sua aprovação.</em></h2>
+          <p>Organize ideias, prepare publicações e mantenha o controle de cada postagem.</p>
+          <button class="primary-btn" data-goto="content">Criar primeira publicação <span>→</span></button></div>
+          <div class="hero-art"><div class="phone"><div class="phone-top"></div><div class="phone-logo">VJ</div><div class="phone-lines"></div><div class="phone-chip">STUDIO</div></div><div class="orbit"></div></div>
+        </div>
+        <div class="stats-grid">
+          <article class="stat-card"><span>CONTEÚDOS CRIADOS</span><strong id="statTotal">0</strong><small>Total no dispositivo</small></article>
+          <article class="stat-card"><span>AGUARDANDO APROVAÇÃO</span><strong id="statPending">0</strong><small>Precisam da sua revisão</small></article>
+          <article class="stat-card"><span>AGENDADOS</span><strong id="statScheduled">0</strong><small>Prontos para publicação</small></article>
+          <article class="stat-card"><span>PUBLICADOS</span><strong id="statPublished">0</strong><small>Registrados como publicados</small></article>
+        </div>
+        <div class="section-head"><div><span class="eyebrow">ACOMPANHAMENTO</span><h2>Fluxo de publicação</h2></div><span class="muted">14 conteúdos / semana como meta</span></div>
+        <div class="workflow">
+          <div><i>01</i><b>Rascunho</b><small>Prepare o conteúdo</small></div><span>→</span>
+          <div><i>02</i><b>Revisão</b><small>Confira tudo</small></div><span>→</span>
+          <div class="highlight"><i>03</i><b>Aprovação</b><small>Você autoriza</small></div><span>→</span>
+          <div><i>04</i><b>Agendamento</b><small>Defina o horário</small></div><span>→</span>
+          <div><i>05</i><b>Publicação</b><small>Integração futura</small></div>
+        </div>
+        <div class="section-head"><div><span class="eyebrow">RECENTES</span><h2>Seus conteúdos</h2></div><button class="text-btn" data-goto="history">Ver histórico →</button></div>
+        <div id="recentList" class="content-list empty-state">Ainda não há conteúdos. Crie sua primeira publicação para começar.</div>
+      </section>
+
+      <section class="page" id="page-content">
+        <div class="section-head"><div><span class="eyebrow">ESTÚDIO DE CRIAÇÃO</span><h2>Novo conteúdo</h2><p class="muted">Preencha os campos e salve como rascunho ou envie para aprovação.</p></div></div>
+        <div class="editor-layout">
+          <form id="contentForm" class="panel editor-form">
+            <label>Título do conteúdo<input id="title" required maxlength="100" placeholder="Ex.: 3 sinais de bateria desgastada"></label>
+            <div class="two-col">
+              <label>Formato<select id="format"><option>Reel</option><option>Story</option><option>Carrossel</option><option>Imagem</option></select></label>
+              <label>Categoria<select id="category"><option>Dica técnica</option><option>Assistência técnica</option><option>iPhones</option><option>Promoção</option><option>Bastidores</option><option>Institucional</option></select></label>
+            </div>
+            <label>Roteiro / texto do conteúdo<textarea id="script" rows="5" placeholder="Escreva o que será apresentado no vídeo ou arte..."></textarea></label>
+            <label>Legenda<textarea id="caption" rows="4" placeholder="Escreva a legenda da publicação..."></textarea></label>
+            <label>Hashtags<input id="hashtags" placeholder="#VitrineDoJota #AssistenciaTecnica"></label>
+            <label>Chamada para ação (CTA)<input id="cta" placeholder="Fale pelo WhatsApp e solicite seu orçamento."></label>
+            <div class="two-col">
+              <label>Data prevista<input id="scheduleDate" type="date"></label>
+              <label>Horário<select id="scheduleTime"><option value="12:30">12h30</option><option value="19:30">19h30</option></select></label>
+            </div>
+            <div class="form-actions"><button type="button" class="secondary-btn" id="saveDraft">Salvar rascunho</button><button type="submit" class="primary-btn">Enviar para aprovação →</button></div>
+            <p class="tiny muted">O envio para aprovação não publica nada no Instagram.</p>
+          </form>
+          <aside class="panel preview-panel"><span class="eyebrow">PRÉVIA TEXTUAL</span><div class="preview-frame"><div class="preview-brand">VJ <small>VITRINE DO JOTA</small></div><div class="preview-content"><span id="previewFormat">REEL</span><h3 id="previewTitle">Seu título aparecerá aqui</h3><p id="previewScript">A prévia do roteiro será exibida nesta área.</p></div><div class="preview-footer">RAPIDEZ • QUALIDADE • CONFIANÇA</div></div><p class="tiny muted">Prévia de texto. O renderizador de vídeo e a narração serão adicionados em uma próxima etapa.</p></aside>
+        </div>
+      </section>
+
+      <section class="page" id="page-approval">
+        <div class="section-head"><div><span class="eyebrow">CONTROLE MANUAL</span><h2>Fila de aprovação</h2><p class="muted">Somente conteúdos aprovados por você poderão avançar para o agendamento.</p></div></div>
+        <div id="approvalList" class="content-list empty-state">Nenhum conteúdo aguardando aprovação.</div>
+      </section>
+
+      <section class="page" id="page-calendar">
+        <div class="section-head"><div><span class="eyebrow">PLANEJAMENTO</span><h2>Calendário editorial</h2><p class="muted">Visualize as datas e horários planejados.</p></div></div>
+        <div id="calendarList" class="content-list empty-state">Nenhum conteúdo agendado.</div>
+      </section>
+
+      <section class="page" id="page-history">
+        <div class="section-head"><div><span class="eyebrow">REGISTROS</span><h2>Histórico de conteúdos</h2></div></div>
+        <div id="historyList" class="content-list empty-state">Seu histórico aparecerá aqui.</div>
+      </section>
+
+      <section class="page" id="page-settings">
+        <div class="section-head"><div><span class="eyebrow">PREFERÊNCIAS</span><h2>Configurações</h2></div></div>
+        <div class="panel settings-panel">
+          <h3>Identidade da marca</h3>
+          <div class="settings-row"><span>Nome</span><b>Vitrine do Jota</b></div>
+          <div class="settings-row"><span>Instagram</span><b>@vitrinedojota.rj</b></div>
+          <div class="settings-row"><span>WhatsApp</span><b>+55 (21) 97292-7109</b></div>
+          <div class="settings-row"><span>Identidade visual</span><b>Preto • Azul neon</b></div>
+          <h3>Segurança de publicação</h3>
+          <div class="safety-box">✓ Aprovação manual obrigatória está ativa.<br>✓ Esta versão não possui acesso à sua conta do Instagram.<br>✓ Nenhuma senha ou token é solicitado ou armazenado.</div>
+          <h3>Dados locais</h3>
+          <p class="muted">Os conteúdos ficam salvos neste navegador/dispositivo. Exporte um backup antes de limpar os dados do navegador ou trocar de aparelho.</p>
+          <div class="form-actions"><button class="secondary-btn" id="exportData">Exportar backup JSON</button><label class="file-btn">Importar backup<input type="file" id="importData" accept="application/json"></label><button class="danger-btn" id="clearData">Apagar todos os dados</button></div>
+        </div>
+      </section>
+      <footer>VITRINE DO JOTA STUDIO <span>•</span> MVP 0.1.0 <span>•</span> Modo local</footer>
+    </main>
+  </div>
+  <div id="toast" class="toast" role="status"></div>
+  <script src="app.js"></script>
+</body>
+</html>
