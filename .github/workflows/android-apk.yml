@@ -28,6 +28,18 @@ jobs:
           npm install @capacitor/core @capacitor/android
           npm install -D @capacitor/cli
 
+      - name: Preparar arquivos web
+        run: |
+          mkdir -p www
+          cp index.html app.js styles.css manifest.webmanifest sw.js icon.svg www/
+          cat > capacitor.config.json <<'EOF'
+          {
+            "appId": "com.vitrinedojota.app",
+            "appName": "Vitrine do Jota",
+            "webDir": "www"
+          }
+          EOF
+
       - name: Preparar Android
         run: |
           npx cap add android
